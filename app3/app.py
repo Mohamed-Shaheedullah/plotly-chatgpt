@@ -24,11 +24,11 @@ app.layout = html.Div([
         clearable=False
     ),
 
-    # Year range slider
+    # Year range slider The value property of a RangeSlider is always a list with two elements: min pos and max pos
     dcc.RangeSlider(
         id="year-slider", # see line 45
-        min=df["year"].min(),
-        max=df["year"].max(),
+        min=df["year"].min(), # default min pos
+        max=df["year"].max(),  # default max pos
         step=5,  # Gapminder dataset has 5-year intervals
         marks={str(year): str(year) for year in sorted(df["year"].unique())},
         value=[df["year"].min(), df["year"].max()]  # Default full range
@@ -45,7 +45,7 @@ app.layout = html.Div([
      Input("year-slider", "value")]       # 2. corresponds to year range slider
 )
 def update_chart(selected_countries, selected_years):  # two parameters correspond to input forms lines 44, 45
-    start_year, end_year = selected_years
+    start_year, end_year = selected_years  #  Python tuple unpacking, start_year = selected_years[0]
     filtered_df = df[
         (df["country"].isin(selected_countries)) &
         (df["year"] >= start_year) &
