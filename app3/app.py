@@ -42,7 +42,7 @@ app.layout = html.Div([
 @app.callback(
     Output("lifeexp-chart", "figure"),  # corresponds to chart 
     [Input("country-dropdown", "value"),  # two inputs correspond to input forms, 1. dropdown
-     Input("year-slider", "value")]       # 2. corresponds to year range slider
+     Input("year-slider", "value")]       # 2. corresponds to year range slider # (value is what is passed to update_chart)
 )
 def update_chart(selected_countries, selected_years):  # two parameters correspond to input forms lines 44, 45
     start_year, end_year = selected_years  #  Python tuple unpacking, start_year = selected_years[0]
